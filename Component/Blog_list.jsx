@@ -25,10 +25,11 @@ const Blog_list = () => {
   }, []);
 
   // Filter blogs based on the selected category
-  const filteredBlogs = blogs.filter((item) =>
-    menu === "All" ? item.category !== "Local" : item.category === menu
+  const filteredBlogs = blogs
+  .filter((item) => menu === "All" ? item.category !== "Local" : item.category === menu )
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
     //menu === "All" ? true : item.category === menu
-  );
+
 
   // Calculate total pages and the blogs to display on the current page
   const totalPages = Math.ceil(filteredBlogs.length / itemsPerPage);
@@ -99,7 +100,8 @@ const Blog_list = () => {
       </div>
 
       {/* Blog List */}
-      <div className="flex flex-wrap justify-around gap-1 mb-16 gap-y-10 xl:mx-24">
+      {/*<div className="flex flex-wrap justify-around gap-1 mb-16 gap-y-10 xl:mx-24">*/}
+      <div className="grid max-w-5xl grid-cols-1 gap-6 mx-auto mb-16 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 sm:gap-6 justify-items-center">
         {currentBlogs.map((item, index) => (
           <BlogItem
             key={item._id}
@@ -115,7 +117,7 @@ const Blog_list = () => {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-3 my-6">
+        <div className="flex items-center justify-center gap-3 my-6">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}

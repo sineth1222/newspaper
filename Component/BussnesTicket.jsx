@@ -12,7 +12,9 @@ const BusinessNewsTicker = () => {
     try {
       const response = await axios.get("/api/blog");
       const blogs = response.data.blogs;
-      const businessBlogs = blogs.filter((blog) => blog.category );
+      const businessBlogs = blogs
+      .filter((blog) => blog.category )
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
       setBusinessNews(businessBlogs);
     } catch (error) {
       console.error("Error fetching business news:", error);
@@ -70,7 +72,7 @@ const BusinessNewsTicker = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center text-xs text-gray-500">
+            <div className="text-xs text-center text-gray-500">
               No news available
             </div>
           )}

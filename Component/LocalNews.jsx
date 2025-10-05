@@ -43,7 +43,7 @@ const BusinessBlogList = () => {
   return (
     <div>
       {/* Title /}
-      <h2 className="text-2xl font-bold text-center my-8">දේශීය පුවත්</h2>
+      <h2 className="my-8 text-2xl font-bold text-center">දේශීය පුවත්</h2>
 
       {/* Blog List /}
       <div className="flex flex-wrap justify-around gap-1 mb-16 gap-y-10 xl:mx-24">
@@ -59,7 +59,7 @@ const BusinessBlogList = () => {
             />
           ))
         ) : (
-          <div className="text-center text-gray-500 w-full">
+          <div className="w-full text-center text-gray-500">
             No Business blogs available
           </div>
         )}
@@ -123,9 +123,9 @@ const BusinessBlogList = () => {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get("/api/blog");
-      const businessBlogs = response.data.blogs.filter(
-        (item) => item.category === "Business"
-      );
+      const businessBlogs = response.data.blogs
+      .filter((item) => item.category === "Local")
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
       setBusinessBlogs(businessBlogs);
       console.log(businessBlogs);
     } catch (error) {
@@ -152,15 +152,15 @@ const BusinessBlogList = () => {
   };
 
   return (
-    <div className="py-6 px-4 sm:px-6 lg:px-8" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
+    <div className="px-4 py-6 sm:px-6 lg:px-8" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
     
       {/* Title */}
-      <h2 className="text-xl font-semibold text-center mb-12 my-6 bg-black text-white py-1 px-4 max-w-5xl mx-auto rounded-md shadow-md">
+      <h2 className="max-w-5xl px-4 py-1 mx-auto my-6 mb-12 text-xl font-semibold text-center text-white bg-black rounded-md shadow-md">
         දේශීය පුවත්
       </h2>
 
       {/* Blog List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 gap-6 sm:gap-6 mb-16 max-w-5xl mx-auto justify-items-center">
+      <div className="grid max-w-5xl grid-cols-1 gap-6 mx-auto mb-16 sm:grid-cols-2 lg:grid-cols-3 gap-y-10 sm:gap-6 justify-items-center">
         {currentBlogs.length > 0 ? (
           currentBlogs.map((item) => (
             <NewBlogItem
@@ -175,7 +175,7 @@ const BusinessBlogList = () => {
             />
           ))
         ) : (
-          <div className="col-span-full text-center text-gray-500 text-lg">
+          <div className="text-lg text-center text-gray-500 col-span-full">
             දේශීය පුවත් නොමැත
           </div>
         )}
@@ -183,7 +183,7 @@ const BusinessBlogList = () => {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-3 my-6">
+        <div className="flex items-center justify-center gap-3 my-6">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
