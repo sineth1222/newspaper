@@ -27,6 +27,7 @@ import email_icon from './email_icon.png'
 import upload_area from './upload_area.png'
 import logo1 from './white-logo.png'
 import logo2 from './black-logo.png'
+import chatbot from './chatbot.png'
 
 export const assets = {
     facebook_icon,
@@ -41,7 +42,8 @@ export const assets = {
     email_icon,
     upload_area,
     logo1,
-    logo2
+    logo2,
+    chatbot
     }
 
     export const blog_data = [{

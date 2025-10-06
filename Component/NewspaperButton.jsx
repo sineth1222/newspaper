@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from 'next/image';
+import { assets } from '@/Assets/assets';
 
 const NewspaperButton = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -76,14 +78,19 @@ const NewspaperButton = () => {
 
   return (
     <>
-      {/* Fixed Button in Lower Right Corner */}
+
+      {/* News Wizard Button */}
       <button
+        className="fixed bottom-60 right-0 z-50 h-36 w-8 rounded-none rounded-l-lg bg-[#f01212f3] text-[#f8f9fc] font-bold text-xs tracking-wider hover:bg-[#e69500] transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg flex items-center justify-center"
+        style={{ writingMode: 'vertical-rl' }}
+        role="button"
+        aria-label="පුවත් විස්මකරු විවෘත කරන්න"
         onClick={openPopup}
-        className="fixed bottom-8 right-8 z-50 h-10 w-60 rounded-lg bg-[#f32f2ff9] text-[#e6e7ed] font-bold text-l tracking-wider hover:bg-[#e69500] transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg flex items-center justify-center"
-        //className="fixed bottom-8 right-8 z-[50] ease-in-out bg-red-600 hover:bg-blue-700 text-white font-bold py-1 px-18 text-xl rounded-lg shadow-lg transition-colors duration-200"
-         // z-50 font interpreted as large font size
       >
-        අද පත්තරේ
+        <div className="flex items-center justify-center gap-3" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+          <span>අද පත්තරේ</span>
+          {/*<FaSearch className="text-base" style={{ transform: 'rotate(180deg)' }} />*/}
+        </div>
       </button>
 
       {/* Popup Modal */}

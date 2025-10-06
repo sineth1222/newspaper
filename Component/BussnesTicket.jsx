@@ -33,7 +33,7 @@ const BusinessNewsTicker = () => {
       {/* Ticker Container */}
       <div className="relative py-1 overflow-hidden bg-gray-200">
         {/* News Label */}
-        <div className="absolute top-0 left-0 z-10 px-4 py-1 text-xs font-medium text-white bg-[#f32f2ff9] rounded-sm">
+        <div className="absolute top-0 left-0 z-10 px-2 sm:px-4 py-1 text-xs font-medium text-white bg-[#f32f2ff9] rounded-sm">
           එසැණ පුවත් :
         </div>
         <div className="ticker-wrapper">

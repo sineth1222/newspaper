@@ -5,6 +5,8 @@ import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { assets } from '@/Assets/assets';
+import Image from 'next/image';
 
 const Wizard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -93,7 +95,7 @@ const Wizard = () => {
   return (
     <div style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
       {/* News Wizard Button */}
-      <button
+      {/*<button
         className="fixed bottom-60 right-0 z-50 h-36 w-10 rounded-none rounded-l-lg bg-[#0b0801ef] text-[#f8f9fc] font-bold text-xs tracking-wider hover:bg-[#e69500] transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg flex items-center justify-center"
         style={{ writingMode: 'vertical-rl' }}
         role="button"
@@ -104,7 +106,16 @@ const Wizard = () => {
           <span>පුවත්  විස්මකරු</span>
           <FaSearch className="text-base" style={{ transform: 'rotate(180deg)' }} />
         </div>
-      </button>
+      </button>*/}
+      {/* Fixed Button in Lower Right Corner */}
+            <button
+              onClick={openModal}
+              className="fixed z-50 flex items-center justify-center font-bold tracking-wider transition-all duration-300 ease-in-out transform bottom-2 right-2 h-35 w-35 hover:scale-110 "
+              //className="fixed bottom-8 right-8 z-[50] ease-in-out bg-red-600 hover:bg-blue-700 text-white font-bold py-1 px-18 text-xl rounded-lg shadow-lg transition-colors duration-200"
+               // z-50 font interpreted as large font size
+            >
+              <Image src={assets.chatbot} alt="logo" width={150} height={50} className="w-[130px] sm:w-auto" />
+            </button>
 
       {/* Modal */}
       {isModalOpen && (

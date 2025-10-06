@@ -144,7 +144,7 @@ const Header = () => {
   // Hamburger button with Tailwind
   const HamburgerButton = () => (
     <button
-      className="flex flex-col items-center justify-center w-8 h-8 space-y-1 md:hidden"
+      className="z-20 flex flex-col items-center justify-center w-16 h-16 space-y-1 md:hidden"
       onClick={() => {
         console.log("Toggling menu"); // Debug log
         setIsMenuOpen(!isMenuOpen);
@@ -169,7 +169,7 @@ const Header = () => {
         <div
           className={`
             ${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row items-center gap-4
-            absolute md:static top-16 right-5 bg-white md:bg-transparent p-4 md:p-0 rounded-md shadow-md md:shadow-none z-10
+            absolute md:static top-16 right-5 z-20 bg-white md:bg-transparent p-4 md:p-0 rounded-md shadow-md md:shadow-none 
           `}
         >
           {isMenuOpen ? (
@@ -248,7 +248,7 @@ const Header = () => {
         </p>
         <form
           onSubmit={onSubmitHandler}
-          className="flex justify-between h-10 max-w-[500px] scale-75 sm:scale-100 mx-auto mt-10 border border-black shadow-2xl rounded-xl hover:shadow-2xl"
+          className="flex justify-between h-10 max-w-[600px] scale-100 sm:scale-100 mx-auto mt-10 border border-black shadow-2xl rounded-xl hover:shadow-2xl"
           action=""
         >
           <input
@@ -256,7 +256,7 @@ const Header = () => {
             value={email}
             type="email"
             placeholder="ඔබගේ විද්‍යුත් තැපෑල ඇතුළත් කරන්න"
-            className="flex-1 min-w-0 pl-4 font-sans text-base outline-none"
+            className="flex-1 min-w-0 pl-4 font-sans text-sm outline-none"
             style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
           />
           <button
