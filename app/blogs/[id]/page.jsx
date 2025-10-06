@@ -97,12 +97,14 @@ import Link from "next/link";
 import React, { use, useEffect, useState } from "react";
 import { useSession, signOut } from 'next-auth/react';
 
+
 const Page = ({ params }) => {
   const { id } = use(params);
   const [data, setData] = useState(null);
   const [blogIds, setBlogIds] = useState([]); // Store sorted blog IDs
   const [currentIndex, setCurrentIndex] = useState(-1); // Current blog's index in the list
   const { data: session } = useSession();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const fetchBlogData = async () => {
     try {
@@ -138,6 +140,23 @@ const Page = ({ params }) => {
       ? blogIds[currentIndex + 1]
       : null;
 
+
+  // Hamburger button with Tailwind
+  const HamburgerButton = () => (
+    <button
+      className="flex flex-col items-center justify-center w-8 h-8 space-y-1 md:hidden"
+      onClick={() => {
+        console.log("Toggling menu"); // Debug log
+        setIsMenuOpen(!isMenuOpen);
+      }}
+      aria-label="Toggle menu"
+    >
+      <span className="block w-6 h-0.5 bg-black transition-transform" />
+      <span className="block w-6 h-0.5 bg-black" />
+      <span className="block w-6 h-0.5 bg-black transition-transform" />
+    </button>
+  );
+
   return data ? (
     <>
       <div className="px-5 py-5 bg-gray-200 md:px-12 lg:px-28">
@@ -150,26 +169,82 @@ const Page = ({ params }) => {
               className="w-[130px] sm:w-auto"
             />
           </Link>
-          <div className="flex items-center gap-4">
-                      {session ? (
-                        <>
-                          <span className="font-medium text-[#0002086a]">{session.user.name}</span>
-                          <button
-                            onClick={() => signOut({ callbackUrl: '/auth/signin' })}
-                            className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6  border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
-                          >
-                            ඉවත්වන්න <Image src={assets.arrow} alt=''/>
-                          </button>
-                        </>
-                      ) : (
-                        <Link href="/auth/signin">
-                          <button className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
-                            ආරම්බ කරන්න <Image src={assets.arrow} alt=''/>
-                          </button>
-                        </Link>
-                      )}
-                    </div>
-        </div>
+          {/* Menu Button */}
+                  <HamburgerButton />
+          
+                  {/* Menu Dropdown (Mobile) and Inline Buttons (Desktop) */}
+                  <div
+                    className={`
+                      ${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row items-center gap-4
+                      absolute md:static top-16 right-5 bg-white md:bg-transparent p-4 md:p-0 rounded-md shadow-md md:shadow-none z-10
+                    `}
+                  >
+                    {isMenuOpen ? (
+                      // Mobile View: Comment + Buttons
+                      <div className="flex flex-col gap-4 w-full max-w-[300px]">
+                        <div className="p-4 text-center bg-gray-100 border border-gray-300 rounded-lg">
+                          <p className="text-sm" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
+                            ආයුබෝවන්! ඔබේ තේරීම තෝරන්න.
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          {session ? (
+                            <>
+                              <div className="p-2 border border-gray-200 rounded-md bg-gray-50">
+                                <span className="font-medium text-[#0002086a]">{session.user.name}</span>
+                              </div>
+                              <div className="p-2 border border-gray-200 rounded-md bg-gray-50">
+                                <button
+                                  onClick={() => signOut({ callbackUrl: '/auth/signin' })}
+                                  className="flex items-center gap-2 font-medium w-full justify-center py-1 px-2 border border-black shadow-[-3px_3px_0px_#000000] hover:shadow-md active:bg-gray-600"
+                                  style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
+                                >
+                                  ඉවතලන්න <Image src={assets.arrow} alt="" />
+                                </button>
+                              </div>
+                            </>
+                          ) : (
+                            <div className="p-2 border border-gray-200 rounded-md bg-gray-50">
+                              <Link href="/auth/signin">
+                                <button
+                                  className="flex items-center gap-2 font-medium w-full justify-center py-1 px-2 border border-black shadow-[-3px_3px_0px_#000000] hover:shadow-md active:bg-gray-600"
+                                  style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
+                                >
+                                  ආරම්බ කරන්න <Image src={assets.arrow} alt="" />
+                                </button>
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      // Desktop View: Direct Buttons (no comment)
+                      <div className="flex items-center gap-4">
+                        {session ? (
+                          <>
+                            <span className="font-medium text-[#0002086a]">{session.user.name}</span>
+                            <button
+                              onClick={() => signOut({ callbackUrl: '/auth/signin' })}
+                              className="flex items-center gap-2 font-medium py-1 px-1 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                              style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
+                            >
+                              ඉවතලන්න <Image src={assets.arrow} alt="" />
+                            </button>
+                          </>
+                        ) : (
+                          <Link href="/auth/signin">
+                            <button
+                              className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                              style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
+                            >
+                              ආරම්බ කරන්න <Image src={assets.arrow} alt="" />
+                            </button>
+                          </Link>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
         <div className="my-24 text-center">
           <h1 className="text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto">
             {data?.blog?.title}
