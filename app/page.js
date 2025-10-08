@@ -5,6 +5,7 @@ import Chatbot from "@/Component/Chatbot";
 import Footer from "@/Component/Footer";
 import Header from "@/Component/Header";
 import BusinessBlogList from "@/Component/LocalNews";
+import NewsEcho from "@/Component/NewsEcho";
 import NewspaperButton from "@/Component/NewspaperButton";
 import { toast, ToastContainer } from "react-toastify";
 

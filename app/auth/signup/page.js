@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
+import { assets } from '@/Assets/assets';
+import Link from 'next/link';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -26,7 +29,10 @@ export default function SignUp() {
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-50 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-[#2c3966]">Create your account</h2>
+        <Link href={"/"} className="flex items-center justify-center">
+          <Image src={assets.logo1} alt="logo" width={150} height={50} className="w-[130px] sm:w-auto" />
+        </Link>
+        <h2 className="mt-6 text-3xl font-extrabold text-center text-black">Create your account</h2>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <input

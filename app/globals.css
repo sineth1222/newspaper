@@ -1,4 +1,10 @@
 @import "tailwindcss";
+/* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&display=swap');
+
+.font-sinhala {
+  font-family: 'Noto Sans Sinhala', sans-serif;
+}
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

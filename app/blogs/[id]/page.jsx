@@ -96,6 +96,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { use, useEffect, useState } from "react";
 import { useSession, signOut } from 'next-auth/react';
+import { FaArrowRight } from 'react-icons/fa';
 
 
 const Page = ({ params }) => {
@@ -225,19 +226,19 @@ const Page = ({ params }) => {
                             <span className="font-medium text-[#0002086a]">{session.user.name}</span>
                             <button
                               onClick={() => signOut({ callbackUrl: '/auth/signin' })}
-                              className="flex items-center gap-2 font-medium py-1 px-1 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                              className="flex items-center gap-2 font-medium py-1 px-1 sm:px-6 rounded-2xl bg-red-500 text-white shadow-[-7px_7px_17px_#FAA6A7] hover:shadow-2xl active:bg-gray-600"
                               style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
                             >
-                              ඉවතලන්න <Image src={assets.arrow} alt="" />
+                              ඉවතලන්න <FaArrowRight className="w-5 h-5" />
                             </button>
                           </>
                         ) : (
                           <Link href="/auth/signin">
                             <button
-                              className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                              className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6 rounded-2xl bg-red-500 text-white shadow-[-7px_7px_17px_#FAA6A7] hover:shadow-2xl active:bg-gray-600"
                               style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
                             >
-                              ආරම්බ කරන්න <Image src={assets.arrow} alt="" />
+                              ආරම්බ කරන්න <FaArrowRight className="w-5 h-5" />
                             </button>
                           </Link>
                         )}

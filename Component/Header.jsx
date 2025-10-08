@@ -122,6 +122,7 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import BusinessNewsTicker from './BussnesTicket';
+import { FaArrowRight } from 'react-icons/fa';
 
 const Header = () => {
   const [email, setEmail] = useState('');
@@ -218,19 +219,19 @@ const Header = () => {
                   <span className="font-medium text-[#0002086a]">{session.user.name}</span>
                   <button
                     onClick={() => signOut({ callbackUrl: '/auth/signin' })}
-                    className="flex items-center gap-2 font-medium py-1 px-1 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                    className="flex items-center gap-2 font-medium py-1 px-1 sm:px-6 rounded-2xl bg-red-500 text-white shadow-[-7px_7px_0px_#FAA6A7] hover:shadow-2xl active:bg-gray-600"
                     style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
                   >
-                    ඉවතලන්න <Image src={assets.arrow} alt="" />
+                    ඉවතලන්න <FaArrowRight className="w-5 h-5" />
                   </button>
                 </>
               ) : (
                 <Link href="/auth/signin">
                   <button
-                    className="flex items-center gap-2 font-medium py-1 px-2 sm:px-6 border border-black shadow-[-7px_7px_0px_#000000] hover:shadow-2xl active:bg-gray-600"
+                    className="flex items-center gap-2 font-medium py-2 px-2 sm:px-6 rounded-2xl bg-red-500 text-white shadow-[-7px_7px_17px_#FAA6A7] hover:shadow-2xl active:bg-gray-600"
                     style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}
                   >
-                    ආරම්බ කරන්න <Image src={assets.arrow} alt="" />
+                    ආරම්බ කරන්න <FaArrowRight className="w-5 h-5" />
                   </button>
                 </Link>
               )}
@@ -239,12 +240,12 @@ const Header = () => {
         </div>
       </div>
       <div className="my-8 text-center">
-        <h1 className="text-2xl font-semibold sm:text-5xl" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
+        {/*<h1 className="text-2xl font-semibold sm:text-5xl" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
           සිරස් තල
-        </h1>
+        </h1>*/}
         <BusinessNewsTicker />
         <p className="mt-10 max-w-[740px] m-auto text-base sm:text-lg" style={{ fontFamily: "'Noto Sans Sinhala', sans-serif" }}>
-          "පත්තරේ, විශ්වසනීය තොරතුරු, ඔබේ ලෝකයට එක්වන්න!"
+          " පත්තරේ, වෙබ් අඩවි යනු ශ්‍රී ලංකාවේ සිංහල භාෂාව කතා කරන බහුතර ජනතාවට සහ විදෙස්ගත සිංහල ජනතාවට සිංහල අකුරු භාවිතයෙන් පුවත් ලබා දෙන ඩිජිටල් වේදිකාවන් ය. මෙම අඩවි දේශීය දේශපාලනය, ජාත්‍යන්තර සිදුවීම්, ක්‍රීඩා, විනෝදාස්වාදය, සංස්කෘතිය ආදී විවිධ මාතෘකා ආවරණය කරමින් තත්කාලීන තොරතුරු සපයයි. "
         </p>
         <form
           onSubmit={onSubmitHandler}
