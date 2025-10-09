@@ -1,3 +1,10 @@
+#පත්තරේ
+
+Live : https://newspaper-gray.vercel.app/
+
+A dynamic Sri Lankan news platform where admins easily add and manage articles, users enjoy ad-free news browsing, and an AI-powered chatbot delivers personalized news searches in English, Sinhala, and Tamil. Stay informed with fresh content from the last 7 days, accessible anytime, anywhere.
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
